@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Remove View Analytics
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      2.0
 // @description  Remove View Analytics
 // @author       Kyrch
 // @match        https://twitter.com/*
@@ -11,15 +11,8 @@
 
 (function () {
     'use strict';
-    let divs
 
     setInterval(() => {
-        divs = document.querySelectorAll(".css-1dbjc4n.r-18u37iz.r-1h0z5md")
-
-        divs.forEach((div) => {
-            if (div.innerHTML.includes("analytics")) {
-                div.remove()
-            }
-        })
+        [...document.querySelectorAll(".css-1dbjc4n.r-18u37iz.r-1h0z5md")].filter(div => div.innerHTML.includes("analytics")).forEach(div => div.remove())
     }, 50)
 })();
